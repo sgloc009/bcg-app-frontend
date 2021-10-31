@@ -1,0 +1,19 @@
+<mat-toolbar>
+    <mat-toolbar-row>
+        <button mat-icon-button (click)="mainsidenav.toggle()"><mat-icon>menu</mat-icon></button>
+        <h1 style="margin-left: 20px">BCG-APP</h1>
+    </mat-toolbar-row>
+</mat-toolbar>
+<div style="position: relative; height: calc( 100% - 70px);">
+    <mat-sidenav-container>
+        <mat-sidenav #mainsidenav>
+            <mat-nav-list>
+                <mat-list-item><a routerLink="policies">Policies</a></mat-list-item>
+                <mat-list-item><a routerLink="analytics">Analytics</a></mat-list-item>
+            </mat-nav-list>
+        </mat-sidenav>
+        <mat-sidenav-content>
+            <router-outlet></router-outlet>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>

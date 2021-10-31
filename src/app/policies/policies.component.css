@@ -1,0 +1,26 @@
+.customer-details{
+    width: 240px;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1)
+}
+
+.customer-details .mat-form-field{
+    width: 100%;
+}
+
+.mat-sidenav-container{
+    position: relative;
+    height: 100%;
+}
+
+.sidenav-btn{
+    position: absolute;
+    bottom: 50px;
+    right: 0;
+    z-index: 2;
+}
+
+.mat-sidenav{
+    min-width: 320px;
+}

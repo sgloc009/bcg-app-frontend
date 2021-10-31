@@ -1,0 +1,41 @@
+
+<div style="padding: 20px">
+    <mat-form-field>
+        <mat-select [(ngModel)]="show" (selectionChange)="onSelectChange()">
+            <mat-option value="date">Date Wise</mat-option>
+            <mat-option value="month">Month Wise</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <span  *ngIf="!loading else spinner">
+        <!-- <ngx-charts-bar-vertical
+            [view]="view"
+            [results]="data"
+            [gradient]="gradient"
+            [xAxis]="showXAxis"
+            [yAxis]="showYAxis"
+            [legend]="showLegend"
+            [showXAxisLabel]="showXAxisLabel"
+            [showYAxisLabel]="showYAxisLabel"
+            [xAxisLabel]="xAxisLabel"
+            [yAxisLabel]="yAxisLabel"
+            (select)="onSelect($event)">
+        >
+        </ngx-charts-bar-vertical> -->
+        <ngx-charts-line-chart
+        [view]="view"
+        [results]="data"
+        [gradient]="gradient"
+        [xAxis]="showXAxis"
+        [yAxis]="showYAxis"
+        [legend]="showLegend"
+        [showXAxisLabel]="showXAxisLabel"
+        [showYAxisLabel]="showYAxisLabel"
+        [xAxisLabel]="xAxisLabel"
+        [yAxisLabel]="yAxisLabel">
+        </ngx-charts-line-chart>
+    </span>
+    <ng-template #spinner>
+        <mat-spinner></mat-spinner>
+    </ng-template>
+</div>

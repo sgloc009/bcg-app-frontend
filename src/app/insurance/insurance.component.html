@@ -1,0 +1,59 @@
+<div class="insurance wrapper">
+    <mat-toolbar color="accent">
+        <mat-toolbar-row>
+            INSURANCES
+        </mat-toolbar-row>
+    </mat-toolbar>
+    <div style="padding: 20px">
+        <mat-form-field>
+            <mat-label>Premium</mat-label>
+            <input matInput (ngModelChange)="detectChange()" [(ngModel)]="vehicle.insurance.premium" [value]="vehicle.insurance.premium | currency">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Id</mat-label>
+            <input matInput (ngModelChange)="detectChange()" [(ngModel)]="vehicle.insurance.id" [value]="vehicle.insurance.id">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Vehicle Segment</mat-label>
+            <mat-select (ngModelChange)="detectChange()" [(ngModel)]="vehicle.segment" [value]="vehicle.segment">
+                <mat-option value="A">A</mat-option>
+                <mat-option value="B">B</mat-option>
+                <mat-option value="C">C</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Vehicle Type</mat-label>
+            <mat-select (ngModelChange)="detectChange()" [(ngModel)]="vehicle.fuel" [value]="vehicle.fuel">
+                <mat-option value="CNG">CNG</mat-option>
+                <mat-option value="Petrol">Petrol</mat-option>
+                <mat-option value="Diesel">Diesel</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Date Of Purchase</mat-label>
+            <input disabled={{true}} [matDatepicker]="datepicker" (ngModelChange)="detectChange()" matInput [(ngModel)]="vehicle.insurance.dop" [value]="vehicle.insurance.dop">
+            <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+            <mat-datepicker #datepicker></mat-datepicker>
+        </mat-form-field>
+        <div>
+            <mat-label>Property Damage Liability</mat-label>
+            <mat-checkbox (ngModelChange)="detectChange()" [(ngModel)]="vehicle.insurance.pdl"></mat-checkbox>
+        </div>
+        <div>
+            <mat-label>Bodily Injury Liability</mat-label>
+            <mat-checkbox (ngModelChange)="detectChange()" [(ngModel)]="vehicle.insurance.bil"></mat-checkbox>
+        </div>
+        <div>
+            <mat-label>Comprehensive</mat-label>
+            <mat-checkbox (ngModelChange)="detectChange()" [(ngModel)]="vehicle.insurance.comprehensive"></mat-checkbox>
+        </div>
+        <div>
+            <mat-label>Personal Injury Protection</mat-label>
+            <mat-checkbox (ngModelChange)="detectChange()" [(ngModel)]="vehicle.insurance.pip"></mat-checkbox>
+        </div>
+        <div>
+            <mat-label>Collision</mat-label>
+            <mat-checkbox (ngModelChange)="detectChange()" [(ngModel)]="vehicle.insurance.collision"></mat-checkbox>
+        </div>
+    </div>
+</div>

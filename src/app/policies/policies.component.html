@@ -1,0 +1,57 @@
+<button mat-fab class="sidenav-btn" (click)="sidenav.toggle()"><mat-icon>person</mat-icon></button>
+<mat-sidenav-container> 
+    <mat-sidenav #sidenav [(opened)]="opened">
+        <span *ngIf="!loading else spinner">
+            <mat-form-field>
+                <mat-label>Find Customer Id</mat-label>
+                <input matInput type="number" [disabled]="!!insurance_id" [(ngModel)]="customer_id">
+            </mat-form-field><mat-form-field>
+                <mat-label>Find Insurance Id</mat-label>
+                <input matInput type="number" [disabled]="!!customer_id" [(ngModel)]="insurance_id">
+            </mat-form-field>
+            <button (click)="searchPolicy(customer_id, insurance_id)" mat-raised-button color="primary">Search</button>
+            <div class="customer-details wrapper" *ngFor="let customerObj of customerObjects.items, let i=index">
+                <mat-form-field>
+                    <mat-label >Name</mat-label>
+                    <input [(ngModel)]="customerObjects.items[i].id" matInput [value]="customerObjects.items[i].id" readonly>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Gender</mat-label>
+                    <mat-select  [(ngModel)]="customerObjects.items[i].gender" [value]="customerObjects.items[i].gender" readonly>
+                        <mat-option value="Male">Male</mat-option>
+                        <mat-option value="Female">Female</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Income Group</mat-label>
+                    <mat-select readonly [(ngModel)]="customerObjects.items[i].income_group" [value]="customerObjects.items[i].income_group">
+                        <mat-option value="$25-$70K">$25-$70K</mat-option>
+                        <mat-option value="0- $25K">0- $25K</mat-option>
+                        <mat-option value=">$70K">>$70K</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Region</mat-label>
+                    <input matInput [(ngModel)]="customerObjects.items[i].region" [value]="customerObjects.items[i].region" readonly>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Marital Status</mat-label>
+                    <mat-select [(ngModel)]="customerObjects.items[i].marital_status" [value]="customerObjects.items[i].marital_status?'Married':'Unmarried'">
+                        <mat-option value="Married">Married</mat-option>
+                        <mat-option value="Unmarried">Unmarried</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </span>
+        <ng-template #spinner><mat-spinner></mat-spinner></ng-template>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <span *ngIf="!loading else spinner">
+            <app-insurance (changed)="changeHandler()" [vehicle]="customerObjects.items[0].vehicle[current_insurance]"></app-insurance>
+            <button mat-raised-button [disabled]="current_insurance==0" (click)="previous()">PREVIOUS</button>
+            <button mat-raised-button (click)="next()" [disabled]="current_insurance==(customerObjects.items[0].vehicle.length-1)" color="primary">NEXT</button>
+            <button mat-raised-button (click)="onUpdate()" color="primary" [disabled]="!changed">UPDATE</button>
+        </span>
+        <ng-template #spinner><mat-spinner></mat-spinner></ng-template>
+    </mat-sidenav-content>
+</mat-sidenav-container>
